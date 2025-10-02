@@ -1,4 +1,9 @@
 from prefect import flow
+import sys
+import os
+
+# Add the parent 'src' directory to the path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Import tasks from your other files
 from extractors.atom_extractor import extract_elements_from_json
