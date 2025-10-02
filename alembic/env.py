@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from alembic import context
 
 # Add the project root directory to the Python path
-# This allows Alembic to find the 'models' package
+# This allows Alembic to find the 'src' package
 sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
 
 
@@ -36,13 +36,14 @@ if config.config_file_name is not None:
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-from models.database import Base
-from models import atom  # noqa - This ensures Alembic sees the Atom model
+# Use the correct path starting from 'src'
+from src.models.database import Base
+from src.models import atoms  # noqa - This ensures Alembic sees the Atom model
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
-# my_important_option = config.get_main_option("my_important_option")
+# my_important_option = aconfig.get_main_option("my_important_option")
 # ... etc.
 
 
@@ -96,3 +97,4 @@ if context.is_offline_mode():
     run_migrations_offline()
 else:
     run_migrations_online()
+
