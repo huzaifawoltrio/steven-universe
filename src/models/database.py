@@ -26,3 +26,17 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # This is the central Base class that all your models will inherit from.
 Base = declarative_base()
+
+
+# --- Session Context Manager ---
+
+def get_session():
+    """
+    Context manager for database sessions.
+    Ensures proper cleanup of database connections.
+    """
+    session = SessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()

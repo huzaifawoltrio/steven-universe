@@ -1,14 +1,9 @@
 from prefect import flow
-import sys
-import os
 
-# Add the parent 'src' directory to the path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-# Import tasks from your other files
-from extractors.atom_extractor import extract_elements_from_json
-from transformers.atom_transformer import transform_elements_to_atoms
-from loaders.atom_loader import load_atoms_to_db
+# Import tasks using relative imports
+from ..extractors.atom_extractor import extract_elements_from_json
+from ..transformers.atom_transformer import transform_elements_to_atoms
+from ..loaders.atom_loader import load_atoms_to_db
 
 @flow(name="Periodic Table Ingestion Flow")
 def ingest_elements_flow():

@@ -39,6 +39,7 @@ if config.config_file_name is not None:
 # Use the correct path starting from 'src'
 from src.models.database import Base
 from src.models import atoms  # noqa - This ensures Alembic sees the Atom model
+from src.models import bonds  # noqa - This ensures Alembic sees the Bond model
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,

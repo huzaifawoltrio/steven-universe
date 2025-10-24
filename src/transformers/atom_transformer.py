@@ -37,6 +37,13 @@ def transform_elements_to_atoms(elements: List[Dict[str, Any]]) -> List[Dict[str
         # The last element in the shells array is the number of valence electrons.
         valence_electrons = element.get("shells", [])[-1] if element.get("shells") else None
 
+        # Extract first ionization energy
+        ionization_energies = element.get("ionization_energies", [])
+        ionization_energy = ionization_energies[0] if ionization_energies else None
+        
+        # Extract electronegativity (Pauling scale)
+        electronegativity = element.get("electronegativity_pauling")
+
         atom_data = {
             "atom_id": atomic_number,
             "element_symbol": element["symbol"],
@@ -46,7 +53,9 @@ def transform_elements_to_atoms(elements: List[Dict[str, Any]]) -> List[Dict[str
             "electron_config": element.get("electron_configuration"),
             "atomic_mass": atomic_mass,
             "atomic_radius": 0.0,  # Defaulting as requested
-            "valence_electrons": valence_electrons
+            "valence_electrons": valence_electrons,
+            "ionization_energy": ionization_energy,
+            "electronegativity": electronegativity
         }
         transformed_atoms.append(atom_data)
         

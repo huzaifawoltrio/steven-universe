@@ -18,6 +18,8 @@ class Atom(Base):
     atomic_mass = Column(Float, nullable=False, comment="The standard atomic weight of the element.")
     atomic_radius = Column(Float, default=0.0, comment="The atomic radius in picometers (defaulted to 0).")
     valence_electrons = Column(Integer, comment="The number of electrons in the outermost shell.")
+    ionization_energy = Column(Float, comment="First ionization energy in kJ/mol.")
+    electronegativity = Column(Float, comment="Pauling electronegativity value.")
 
     def __repr__(self):
         return f"<Atom(atom_id={self.atom_id}, symbol='{self.element_symbol}')>"
